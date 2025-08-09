@@ -1,59 +1,40 @@
-import React from "react";
-import { GanttComponent, Inject, ColumnsDirective, ColumnDirective, DayMarkers, Selection, Edit } from "@syncfusion/ej2-react-gantt";
-import "@syncfusion/ej2-base/styles/material.css";
-import "@syncfusion/ej2-react-gantt/styles/material.css";
+import React from 'react';
+import { GanttComponent, ColumnsDirective, ColumnDirective, Inject, Edit } from '@syncfusion/ej2-react-gantt';
+
+const tasks = [
+  { TaskID: 1, TaskName: 'Project Initiation', StartDate: new Date('2025-08-01'), Duration: 5, Progress: 50 },
+  { TaskID: 2, TaskName: 'Planning', StartDate: new Date('2025-08-06'), Duration: 7, Progress: 30 },
+  { TaskID: 3, TaskName: 'Execution', StartDate: new Date('2025-08-15'), Duration: 10, Progress: 70 }
+];
+
+const taskFields = {
+  id: 'TaskID',
+  name: 'TaskName',
+  startDate: 'StartDate',
+  duration: 'Duration',
+  progress: 'Progress'
+};
 
 function App() {
-  const tasks = [
-    {
-      TaskID: 1,
-      TaskName: "Project Planning",
-      StartDate: new Date("2025-08-05"),
-      EndDate: new Date("2025-08-10"),
-      Progress: 60
-    },
-    {
-      TaskID: 2,
-      TaskName: "Design Phase",
-      StartDate: new Date("2025-08-11"),
-      EndDate: new Date("2025-08-15"),
-      Progress: 30
-    },
-    {
-      TaskID: 3,
-      TaskName: "Construction",
-      StartDate: new Date("2025-08-16"),
-      EndDate: new Date("2025-08-25"),
-      Progress: 10
-    }
-  ];
-
-  const taskFields = {
-    id: "TaskID",
-    name: "TaskName",
-    startDate: "StartDate",
-    endDate: "EndDate",
-    progress: "Progress"
-  };
-
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{ padding: '20px' }}>
       <h1>Multi-project Cashflow Tracker</h1>
       <GanttComponent
         dataSource={tasks}
         taskFields={taskFields}
         allowSelection={true}
         allowTaskbarEditing={true}
+        editSettings={{ allowTaskbarEditing: true }}
         height="400px"
       >
         <ColumnsDirective>
-          <ColumnDirective field="TaskID" headerText="ID" width="60" textAlign="Left" />
-          <ColumnDirective field="TaskName" headerText="Task Name" width="200" />
-          <ColumnDirective field="StartDate" headerText="Start Date" />
-          <ColumnDirective field="EndDate" headerText="End Date" />
-          <ColumnDirective field="Progress" headerText="Progress" />
+          <ColumnDirective field='TaskID' headerText='ID' width='60' />
+          <ColumnDirective field='TaskName' headerText='Task Name' width='200' />
+          <ColumnDirective field='StartDate' headerText='Start Date' />
+          <ColumnDirective field='Duration' headerText='Duration' />
+          <ColumnDirective field='Progress' headerText='Progress' />
         </ColumnsDirective>
-        <Inject services={[DayMarkers, Selection, Edit]} />
+        <Inject services={[Edit]} />
       </GanttComponent>
     </div>
   );
