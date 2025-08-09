@@ -25,7 +25,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("https://bbscashflow.onrender.com")  // your backend URL here
+    fetch("https://bbscashflow.onrender.com/hello")  // your backend URL here
       .then((res) => res.json())
       .then((data) => setMessage(data.message))
       .catch((err) => setMessage("Error fetching message"));
