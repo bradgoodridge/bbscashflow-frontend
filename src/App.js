@@ -1,10 +1,12 @@
 import React from 'react';
 import { GanttComponent, ColumnsDirective, ColumnDirective, Inject, Edit, Selection } from '@syncfusion/ej2-react-gantt';
+import '@syncfusion/ej2-base/styles/material.css';
+import '@syncfusion/ej2-react-gantt/styles/material.css';
 
 const tasks = [
-  { TaskID: 1, TaskName: 'Project Initiation', StartDate: new Date('2025-08-01'), Duration: 5, Progress: 50, GanttColor: 'blue' },
-  { TaskID: 2, TaskName: 'Planning', StartDate: new Date('2025-08-06'), Duration: 7, Progress: 30, GanttColor: 'blue' },
-  { TaskID: 3, TaskName: 'Execution', StartDate: new Date('2025-08-15'), Duration: 10, Progress: 70, GanttColor: 'blue' }
+  { TaskID: 1, TaskName: 'Project Initiation', StartDate: new Date('2025-08-01'), Duration: 5, Progress: 50 },
+  { TaskID: 2, TaskName: 'Planning', StartDate: new Date('2025-08-06'), Duration: 7, Progress: 30 },
+  { TaskID: 3, TaskName: 'Execution', StartDate: new Date('2025-08-15'), Duration: 10, Progress: 70 }
 ];
 
 const taskFields = {
@@ -23,10 +25,14 @@ function App() {
         dataSource={tasks}
         taskFields={taskFields}
         allowSelection={true}
-        editSettings={{ allowTaskbarEditing: true, allowEditing: true, allowAdding: true, allowDeleting: true }}
+        editSettings={{ allowTaskbarEditing: true }}
         taskbarHeight={30}
         height="400px"
         rowHeight={40}
+        labelSettings={{ taskLabel: '${Progress}%' }}
+        taskbarTemplate={(props) => (
+          <div style={{ backgroundColor: 'blue', height: '100%', borderRadius: '4px' }}></div>
+        )}
       >
         <ColumnsDirective>
           <ColumnDirective field='TaskID' headerText='ID' width='60' />
