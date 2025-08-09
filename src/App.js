@@ -1,5 +1,5 @@
 import React from 'react';
-import { GanttComponent, ColumnsDirective, ColumnDirective, Inject, Edit } from '@syncfusion/ej2-react-gantt';
+import { GanttComponent, ColumnsDirective, ColumnDirective, Inject, Edit, Selection } from '@syncfusion/ej2-react-gantt';
 
 const tasks = [
   { TaskID: 1, TaskName: 'Project Initiation', StartDate: new Date('2025-08-01'), Duration: 5, Progress: 50 },
@@ -23,8 +23,8 @@ function App() {
         dataSource={tasks}
         taskFields={taskFields}
         allowSelection={true}
-        allowTaskbarEditing={true}
         editSettings={{ allowTaskbarEditing: true }}
+        taskbarHeight={30}
         height="400px"
       >
         <ColumnsDirective>
@@ -34,7 +34,7 @@ function App() {
           <ColumnDirective field='Duration' headerText='Duration' />
           <ColumnDirective field='Progress' headerText='Progress' />
         </ColumnsDirective>
-        <Inject services={[Edit]} />
+        <Inject services={[Edit, Selection]} />
       </GanttComponent>
     </div>
   );
